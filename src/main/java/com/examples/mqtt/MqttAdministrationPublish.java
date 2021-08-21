@@ -81,19 +81,20 @@ public class MqttAdministrationPublish {
 			sampleClient.connect(connOpts);
 			System.out.println("Connected\n");
 
-			//sending message for the main service 
+			//sending messages 
 			publishMessage(topic, content, 2, false);
 			
-			publishMessage("/administration", "Administration Service registered with, " + serviceDetails, 1, false);
+			//sending message for general info service 
+			publishMessage("/administration", "Administration Service registered with, " + serviceDetails, 2, false);
 			System.out.println("--------------------------------------------------------\n");
 						
 			//sending messages for the patient registration			 						
-			publishMessage("/administration/registerPatient", "Patient registered with, " + patDetails, 1, false);	
+			publishMessage("/administration/registerPatient", "Patient registered with, " + patDetails, 2, false);	
 			System.out.println("--------------------------------------------------------\n");
 			
 			//sending messages for displaying patients list	
 			for (int i = 0; i < patList.size(); i++) {
-				publishMessage("/administration/displayPatients", "The list patients is: " + patList.get(i), 1, false);			
+				publishMessage("/administration/displayPatients", "The list patients is: " + patList.get(i), 2, false);			
 			}	
 			System.out.println("--------------------------------------------------------\n");
 			
@@ -106,7 +107,7 @@ public class MqttAdministrationPublish {
 			
 			publishMessage("/administration/calculatePrice", "Total accommodation price for: " 
 													+ patName + ", for: " + nrDays + " days, in a: " 
-													+ room + " room is: € " + totalPrice, 1, false);	
+													+ room + " room is: € " + totalPrice, 2, false);	
 			System.out.println("--------------------------------------------------------\n");
 			
 			//disconnect the service			         		   
